@@ -93,25 +93,25 @@ class Eugene_GUI():
         entry_x = 1
         entry_y = 1
 
-        self.latest_ver_entry  = Entry(self.init_window_name, textvariable = self.latest_ver,        width = 25)
-        self.current_version = Entry(self.init_window_name, textvariable = self.current_ver,       width = 25)
-        self.firmwar_version = Entry(self.init_window_name, textvariable = self.firmware_ver,      width = 25)
-        self.bluethooth_name = Entry(self.init_window_name, textvariable = self.bluetooth_name,    width = 25)
-        self.bluethooth_addr = Entry(self.init_window_name, textvariable = self.bluetooth_address, width = 25)
-        self.finally_result  = Entry(self.init_window_name, textvariable = self.final_result, width=25, foreground = "red", state = "readonly")
-        self.count_a = Entry(self.init_window_name, textvariable = self.count, width=6, font=("微软雅黑", "12", "bold"),state = "readonly")
-        self.count_s = Entry(self.init_window_name, textvariable = self.count_success, width=6, font=("微软雅黑", "12", "bold"),state = "readonly", foreground = "blue")
-        self.count_f = Entry(self.init_window_name, textvariable = self.count_faied, width=6, font=("微软雅黑", "12", "bold"),state = "readonly", foreground = "red")
+        self.lat_ver_entry  = Entry(self.init_window_name, textvariable = self.latest_ver,        width = 25)
+        self.cur_ver_entry  = Entry(self.init_window_name, textvariable = self.current_ver,       width = 25)
+        self.fw_ver_entry   = Entry(self.init_window_name, textvariable = self.firmware_ver,      width = 25)
+        self.bt_name_entry  = Entry(self.init_window_name, textvariable = self.bluetooth_name,    width = 25)
+        self.bt_addr_entry  = Entry(self.init_window_name, textvariable = self.bluetooth_address, width = 25)
+        self.fin_res_entry  = Entry(self.init_window_name, textvariable = self.final_result, width=25, foreground = "red", state = "readonly")
+        self.count_a_entry  = Entry(self.init_window_name, textvariable = self.count, width=6, font=("微软雅黑", "12", "bold"),state = "readonly")
+        self.count_s_entry  = Entry(self.init_window_name, textvariable = self.count_success, width=6, font=("微软雅黑", "12", "bold"),state = "readonly", foreground = "blue")
+        self.count_f_entry  = Entry(self.init_window_name, textvariable = self.count_faied, width=6, font=("微软雅黑", "12", "bold"),state = "readonly", foreground = "red")
         
-        self.latest_ver_entry.grid (row = entry_x + 0, column = entry_y + 1)
-        self.current_version.grid(row = entry_x + 1, column = entry_y + 1)
-        self.firmwar_version.grid(row = entry_x + 2, column = entry_y + 1)
-        self.bluethooth_name.grid(row = entry_x + 3, column = entry_y + 1)
-        self.bluethooth_addr.grid(row = entry_x + 4, column = entry_y + 1)
-        self.finally_result.grid (row = entry_x + 5, column = entry_y + 1)
-        self.count_a.grid(row = entry_x + 7, column = entry_y + 0)
-        self.count_s.grid(row = entry_x + 7, column = entry_y + 1)
-        self.count_f.grid(row = entry_x + 7, column = entry_y + 2)
+        self.lat_ver_entry.grid (row = entry_x + 0, column = entry_y + 1)
+        self.cur_ver_entry.grid(row = entry_x + 1, column = entry_y + 1)
+        self.fw_ver_entry.grid(row = entry_x + 2, column = entry_y + 1)
+        self.bt_name_entry.grid(row = entry_x + 3, column = entry_y + 1)
+        self.bt_addr_entry.grid(row = entry_x + 4, column = entry_y + 1)
+        self.fin_res_entry.grid (row = entry_x + 5, column = entry_y + 1)
+        self.count_a_entry.grid(row = entry_x + 7, column = entry_y + 0)
+        self.count_s_entry.grid(row = entry_x + 7, column = entry_y + 1)
+        self.count_f_entry.grid(row = entry_x + 7, column = entry_y + 2)
 
         button_x = 1
         button_y = 1
@@ -119,8 +119,7 @@ class Eugene_GUI():
         self.lock_button = Checkbutton(self.init_window_name, text = '锁定版本号',variable = self.status_value,command = self.Status_Entry)
 
 
-
-
+        
         self.lock_button.grid(row = button_x, column = button_y+2)
 
 
