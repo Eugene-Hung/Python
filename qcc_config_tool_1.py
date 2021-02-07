@@ -7,6 +7,7 @@ import operator as op
 
 from tkinter import *
 from tkinter.messagebox import *
+from tkinter.font import *
 
 from enum import Enum
 
@@ -67,41 +68,44 @@ class Eugene_GUI():
         self.init_window_name.attributes("-alpha",1) #虚化
         self.init_window_name.resizable(False, False)
 
+
+        final_res_font = Font(family = '微软雅黑', size = 8,weight = BOLD,slant = ROMAN, underline = 0,overstrike = 0)
+
         label_x = 1
         label_y = 1
 
-        self.lat_ver_label = Label(self.init_window_name, text="  最新版本号  ", width = 15,height = 2, fg = "blue", font=("微软雅黑", "10", "bold"))
-        self.cur_ver_label = Label(self.init_window_name, text="  当前版本号  ", width = 15,height = 2, fg = "coral", font=("微软雅黑", "10", "bold"))
-        self.fw_ver_label  = Label(self.init_window_name, text="  固件版本    ", width = 15,height = 2, fg = "teal", font=("微软雅黑", "10", "bold"))
-        self.bt_name_label = Label(self.init_window_name, text="  蓝牙名称    ", width = 15,height = 2, font=("微软雅黑", "10", "bold"))
-        self.bt_addr_label = Label(self.init_window_name, text="  蓝牙地址    ", width = 15,height = 2, font=("微软雅黑", "10", "bold"))
-        self.fin_resl_label = Label(self.init_window_name, text="  对比结果    ", width = 15,height = 2, font=("微软雅黑", "10", "bold"))
-        self.count_a_label = Label(self.init_window_name, text="  当前检测总数 ", width = 15,height = 2, font=("微软雅黑", "10", "bold"))
-        self.count_s_label = Label(self.init_window_name, text="  校对成功总数 ", width = 15,height = 2, font=("微软雅黑", "10", "bold"))
-        self.count_f_label = Label(self.init_window_name, text="  校对失败总数 ", width = 15,height = 2, font=("微软雅黑", "10", "bold"))
+        self.lat_ver_label = Label(self.init_window_name, text="  最新版本号  ", width = 15, fg = "blue", font=("微软雅黑", "10", "bold"))
+        self.cur_ver_label = Label(self.init_window_name, text="  当前版本号  ", width = 15, fg = "coral", font=("微软雅黑", "10", "bold"))
+        self.fw_ver_label  = Label(self.init_window_name, text="  固件版本    ", width = 15, fg = "teal", font=("微软雅黑", "10", "bold"))
+        self.bt_name_label = Label(self.init_window_name, text="  蓝牙名称    ", width = 15, font=("微软雅黑", "10", "bold"))
+        self.bt_addr_label = Label(self.init_window_name, text="  蓝牙地址    ", width = 15, font=("微软雅黑", "10", "bold"))
+        self.fin_resl_label = Label(self.init_window_name, text=" 对比结果    ", width = 15, height = 3, font=("微软雅黑", "10", "bold"))
+        self.count_a_label = Label(self.init_window_name, text="  当前检测总数 ", width = 15, font=("微软雅黑", "10", "bold"))
+        self.count_s_label = Label(self.init_window_name, text="  校对成功总数 ", width = 15, font=("微软雅黑", "10", "bold"))
+        self.count_f_label = Label(self.init_window_name, text="  校对失败总数 ", width = 15, font=("微软雅黑", "10", "bold"))
 
         self.lat_ver_label.grid(row = label_x + 0, column = label_y + 0)
         self.cur_ver_label.grid(row = label_x + 1, column = label_y + 0)
         self.fw_ver_label.grid (row = label_x + 2, column = label_y + 0)
         self.bt_name_label.grid(row = label_x + 3, column = label_y + 0)
         self.bt_addr_label.grid(row = label_x + 4, column = label_y + 0)
-        self.fin_resl_label.grid(row = label_x + 5, column = label_y + 0)
-        self.count_a_label.grid(row = label_x + 7, column = label_y + 0)
-        self.count_s_label.grid(row = label_x + 7, column = label_y + 1)
-        self.count_f_label.grid(row = label_x + 7, column = label_y + 2)
+        self.fin_resl_label.grid(row = label_x + 5, column = label_y + 0, padx=2, pady=2, rowspan = 3,sticky = NS)
+        self.count_a_label.grid(row = label_x + 8, column = label_y + 0)
+        self.count_s_label.grid(row = label_x + 8, column = label_y + 1)
+        self.count_f_label.grid(row = label_x + 8, column = label_y + 2)
 
-        
+       
 
         entry_x = 1
         entry_y = 1
 
-        self.lat_ver_entry  = Entry(self.init_window_name, textvariable = self.latest_ver,        width = 25)
-        self.cur_ver_entry  = Entry(self.init_window_name, textvariable = self.current_ver,       width = 25)
-        self.fw_ver_entry   = Entry(self.init_window_name, textvariable = self.fw_vers,      width = 25)
-        self.bt_name_entry  = Entry(self.init_window_name, textvariable = self.bt_name,    width = 25)
-        self.bt_addr_entry  = Entry(self.init_window_name, textvariable = self.bt_addr, width = 25)
-        self.fin_resl_entry  = Entry(self.init_window_name, textvariable = self.fin_resl, width=25, foreground = "red", state = "readonly")
-        self.count_a_entry  = Entry(self.init_window_name, textvariable = self.all_val, width=6, font=("微软雅黑", "12", "bold"),state = "readonly")
+        self.lat_ver_entry  = Entry(self.init_window_name, textvariable = self.latest_ver,  width = 25)
+        self.cur_ver_entry  = Entry(self.init_window_name, textvariable = self.current_ver, width = 25)
+        self.fw_ver_entry   = Entry(self.init_window_name, textvariable = self.fw_vers,     width = 25)
+        self.bt_name_entry  = Entry(self.init_window_name, textvariable = self.bt_name,     width = 25)
+        self.bt_addr_entry  = Entry(self.init_window_name, textvariable = self.bt_addr,     width = 25)
+        self.fin_resl_entry = Entry(self.init_window_name, textvariable = self.fin_resl, foreground = "green", bg = "pink", width=25, font=final_res_font, state="readonly")
+        self.count_a_entry  = Entry(self.init_window_name, textvariable = self.all_val,  width=6, font=("微软雅黑", "12", "bold"),state = "readonly")
         self.count_s_entry  = Entry(self.init_window_name, textvariable = self.succ_val, width=6, font=("微软雅黑", "12", "bold"),state = "readonly", foreground = "blue")
         self.count_f_entry  = Entry(self.init_window_name, textvariable = self.fail_val, width=6, font=("微软雅黑", "12", "bold"),state = "readonly", foreground = "red")
         
@@ -110,10 +114,10 @@ class Eugene_GUI():
         self.fw_ver_entry.grid (row = entry_x + 2, column = entry_y + 1)
         self.bt_name_entry.grid(row = entry_x + 3, column = entry_y + 1)
         self.bt_addr_entry.grid(row = entry_x + 4, column = entry_y + 1)
-        self.fin_resl_entry.grid(row = entry_x + 5, column = entry_y + 1)
-        self.count_a_entry.grid(row = entry_x + 8, column = entry_y + 0)
-        self.count_s_entry.grid(row = entry_x + 8, column = entry_y + 1)
-        self.count_f_entry.grid(row = entry_x + 8, column = entry_y + 2)
+        self.fin_resl_entry.grid(row = entry_x + 5, column = entry_y + 1, rowspan = 3,pady=10, sticky = NS)
+        self.count_a_entry.grid(row = entry_x + 9, column = entry_y + 0)
+        self.count_s_entry.grid(row = entry_x + 9, column = entry_y + 1)
+        self.count_f_entry.grid(row = entry_x + 9, column = entry_y + 2)
 
         button_x = 1
         button_y = 1
@@ -190,11 +194,13 @@ class Eugene_GUI():
             else :
               compare_reslut = op.eq(read_list, extract_list)
               if compare_reslut is True:
-                self.fin_resl.set("Success")
+                self.fin_resl_entry["foreground"] = "olive"
+                self.fin_resl.set("      S U C C E S S       ")
                 test_success += 1
                 self.succ_val.set(test_success)
               else:
-                self.fin_resl.set("Failed")
+                self.fin_resl.set("    F A I L E D ")
+                self.fin_resl_entry["foreground"] = "red"
                 showwarning(title='Check failure', message='当前版本号与输入的版本号不一致')
                 test_failed += 1
                 self.fail_val.set(test_failed)
@@ -203,7 +209,7 @@ class Eugene_GUI():
 def EugeneGUIStart():
     init_window = Tk()
     eugene_gui  = Eugene_GUI(init_window)
-    eugene_gui.WindowConfigure(450, 450)
+    eugene_gui.WindowConfigure(450, 300)
 
     init_window.mainloop()
 
