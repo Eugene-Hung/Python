@@ -26,8 +26,7 @@ def center_window(w=300, h=200):
 
 def cmd(command):
     global process_status
-    subp = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE,
-                            stderr=subprocess.PIPE, encoding="utf-8")
+    subp = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8")
     subp.wait(2)
     if subp.poll() == 0:
         #print(subp.communicate()[1])
