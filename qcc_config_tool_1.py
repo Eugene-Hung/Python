@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import subprocess
-
+import ctypes
 import os
 import operator as op
 
@@ -10,10 +10,10 @@ from tkinter.messagebox import *
 
 from enum import Enum
 
-write_list = []
-count_dut = 0
-test_success = 0
-test_failed = 0
+write_list     = []
+count_dut      = 0
+test_success   = 0
+test_failed    = 0
 process_status = False
 
 
@@ -35,9 +35,9 @@ class Eugene_GUI():
         self.state_val.  set("0")
         self.latest_ver. set("")
         self.current_ver.set("")
-        self.fw_vers.set("")
-        self.bt_name.set("")
-        self.bt_addr.set("")
+        self.fw_vers. set("")
+        self.bt_name. set("")
+        self.bt_addr. set("")
         self.fin_resl.set("")
         self.all_val. set("0")
         self.succ_val.set("0")
@@ -45,6 +45,7 @@ class Eugene_GUI():
 
     def cmd(self, command):
         global process_status
+
         subp = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8")
         subp.wait(2)
         if subp.poll() == 0:
@@ -52,6 +53,7 @@ class Eugene_GUI():
             process_status = True
         else:
             process_status = False
+        
 
 
     def WindowConfigure(self, w, h):
@@ -84,9 +86,9 @@ class Eugene_GUI():
         self.bt_name_label.grid(row = label_x + 3, column = label_y + 0)
         self.bt_addr_label.grid(row = label_x + 4, column = label_y + 0)
         self.fin_resl_label.grid(row = label_x + 5, column = label_y + 0)
-        self.count_a_label.grid(row = label_x + 6, column = label_y + 0)
-        self.count_s_label.grid(row = label_x + 6, column = label_y + 1)
-        self.count_f_label.grid(row = label_x + 6, column = label_y + 2)
+        self.count_a_label.grid(row = label_x + 7, column = label_y + 0)
+        self.count_s_label.grid(row = label_x + 7, column = label_y + 1)
+        self.count_f_label.grid(row = label_x + 7, column = label_y + 2)
 
         
 
@@ -109,9 +111,9 @@ class Eugene_GUI():
         self.bt_name_entry.grid(row = entry_x + 3, column = entry_y + 1)
         self.bt_addr_entry.grid(row = entry_x + 4, column = entry_y + 1)
         self.fin_resl_entry.grid(row = entry_x + 5, column = entry_y + 1)
-        self.count_a_entry.grid(row = entry_x + 7, column = entry_y + 0)
-        self.count_s_entry.grid(row = entry_x + 7, column = entry_y + 1)
-        self.count_f_entry.grid(row = entry_x + 7, column = entry_y + 2)
+        self.count_a_entry.grid(row = entry_x + 8, column = entry_y + 0)
+        self.count_s_entry.grid(row = entry_x + 8, column = entry_y + 1)
+        self.count_f_entry.grid(row = entry_x + 8, column = entry_y + 2)
 
         button_x = 1
         button_y = 1
@@ -126,9 +128,9 @@ class Eugene_GUI():
     
     def Status_Entry(self):
         if self.state_val.get() == True :
-            Entry(self.init_window_name , textvariable=self.latest_ver, width=20, state="readonly"  ).grid(row=1, column=2)
+            self.lat_ver_entry["state"] = "readonly"
         else :
-            Entry(self.init_window_name , textvariable=self.latest_ver, width=20, state="normal"  ).grid(row=1, column=2)
+            self.lat_ver_entry["state"] = "normal"
 
     def ClearInputValue(self):
         self.current_ver.set("")
@@ -190,16 +192,18 @@ class Eugene_GUI():
               if compare_reslut is True:
                 self.fin_resl.set("Success")
                 test_success += 1
+                self.succ_val.set(test_success)
               else:
                 self.fin_resl.set("Failed")
                 showwarning(title='Check failure', message='当前版本号与输入的版本号不一致')
                 test_failed += 1
+                self.fail_val.set(test_failed)
 
 
 def EugeneGUIStart():
     init_window = Tk()
     eugene_gui  = Eugene_GUI(init_window)
-    eugene_gui.WindowConfigure(450, 350)
+    eugene_gui.WindowConfigure(450, 450)
 
     init_window.mainloop()
 
